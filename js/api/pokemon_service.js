@@ -6,7 +6,7 @@ const API_BASE_URL = 'https://pokeapi.co/api/v2';
  * @param {number} offset - The starting point.
  * @returns {Promise<object>} - The API response data.
  */
-export async function getPokemonList(limit = 20, offset = 0) {
+export async function getPokemons(limit = 20, offset = 0) {
     const url = `${API_BASE_URL}/pokemon?limit=${limit}&offset=${offset}`;
     try{
         const response = await fetch(url);
@@ -25,7 +25,7 @@ export async function getPokemonList(limit = 20, offset = 0) {
  * @param {string} nameOrId - The name or ID of the Pokémon.
  * @returns {Promise<object>} - The detailed Pokémon data.
  */
-export async function getPokemonList(nameOrId) {
+export async function getPokemonDetails(nameOrId) {
     const url = `${API_BASE_URL}/pokemon/${nameOrId}`;
     try {
         const response = await fetch(url);
