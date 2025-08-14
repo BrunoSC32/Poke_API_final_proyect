@@ -1,4 +1,4 @@
-import { getPokemons, getPokemonDetails } from '../api/pokemon_service.js';
+import { getPokemons, getPokemonDetails } from './api/pokemon_service.js';
 import { createPokemonCard } from './ui/components/pokemonCard.js';
 import { renderPaginationControls } from './ui/components/pagination.js';
 
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         limit: 10,
         totalPokemons: 0,
     };
-
 
     async function loadPokemonsForPage(page) {
         state.currentPage = page;

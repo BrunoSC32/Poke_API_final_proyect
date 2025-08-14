@@ -2,7 +2,7 @@
  * @description A mapping of Pokémon types to their corresponding pastel colors.
  * This object serves as a single source of truth for styling type-related UI elements.
  */
-export const typeColors = {
+export const typeBackgroundColors = {
     normal: '#E0E0E0',    
     fire: '#FFDDC1',      
     water: '#D6EFFF',    
