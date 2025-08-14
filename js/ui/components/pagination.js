@@ -1,36 +1,23 @@
 
-
-export function createPokemonCard(pokemon) {
-    const card = document.createElement('div');
-    card.className = 'pokemon-card';
-    card.dataset.pokemonName = pokemon.name;
-
-    card.innerHTML = `
-        <img src="${pokemon.sprites.front_default}" alt="Imagen de ${pokemon.name}">
-        <h3>${pokemon.name}</h3>
-    `;
-
-    card.addEventListener('click', () => {
-        window.location.href = `pokemon.html?name=${pokemon.name}`;
-    });
-
-    return card;
-}
-
-
+/**
+ * Renders the pagination controls (arrows and page numbers).
+ * @param {HTMLElement} container - The container where the pagination will be rendered.
+ * @param {object} paginationState - The current state of pagination { currentPage, totalPokemons, limit }.
+ * @param {function} onPageClick - The callback function to execute when a page button is clicked.
+ */
 export function renderPaginationControls(container, paginationState, onPageClick) {
     const { currentPage, totalPokemons, limit } = paginationState;
-    container.innerHTML = ''; // Limpiar controles antiguos.
+    container.innerHTML = ''; 
     const totalPages = Math.ceil(totalPokemons / limit);
 
-    // Botón "Anterior"
+    // Previous Button
     const prevButton = document.createElement('button');
     prevButton.innerHTML = '&laquo;';
     prevButton.disabled = currentPage === 1;
     prevButton.addEventListener('click', () => onPageClick(currentPage - 1));
     container.appendChild(prevButton);
 
-    // Números de Página
+    // Page Numbers Logic
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
 
@@ -48,7 +35,7 @@ export function renderPaginationControls(container, paginationState, onPageClick
         container.appendChild(createPageButton(totalPages, currentPage, onPageClick));
     }
 
-    // Botón "Siguiente"
+    // Next Button
     const nextButton = document.createElement('button');
     nextButton.innerHTML = '&raquo;';
     nextButton.disabled = currentPage === totalPages;
@@ -56,6 +43,7 @@ export function renderPaginationControls(container, paginationState, onPageClick
     container.appendChild(nextButton);
 }
 
+// --- Helper functions (private to this module) ---
 
 function createPageButton(pageNumber, currentPage, onPageClick) {
     const button = document.createElement('button');

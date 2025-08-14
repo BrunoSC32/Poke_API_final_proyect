@@ -1,6 +1,6 @@
-import { getPokemons, getPokemonDetails } from './api/pokemon_service.js';
-
-import { createPokemonCard, renderPaginationControls } from './ui/components.js';
+import { getPokemons, getPokemonDetails } from '../api/pokemon_service.js';
+import { createPokemonCard } from './ui/components/pokemonCard.js';
+import { renderPaginationControls } from './ui/components/pagination.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Referencias al DOM
@@ -10,15 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado de la aplicación
     let state = {
         currentPage: 1,
-        limit: 20,
+        limit: 10,
         totalPokemons: 0,
     };
 
-    /**
-     * Orquesta la carga y renderizado de los Pokémon para una página.
-     * Su única responsabilidad es gestionar el flujo de datos.
-     * @param {number} page - El número de página a cargar.
-     */
+
     async function loadPokemonsForPage(page) {
         state.currentPage = page;
         pokemonContainer.innerHTML = '<p class="loading-message">Cargando Pokémon...</p>';

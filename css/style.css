@@ -17,3 +17,12 @@ body {
     background-color: var(--background-color);
     color: var(--secondary-color);
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
