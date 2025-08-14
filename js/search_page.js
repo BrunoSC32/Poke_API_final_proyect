@@ -1,84 +1,55 @@
 import { getPokemons, getPokemonDetails } from './api/pokemon_service.js';
 
-// Wait for the DOM to be fully loaded before running the script
-document.addEventListener('DOMContentLoaded', () => {
-    const pokemonContainer = document.getElementById('pokemon_list_container');
-    const paginationContainer = document.getElementById('pagination_controls');
-    let nextUrl = null;
-    let prevUrl = null;
+import { createPokemonCard, renderPaginationControls } from './ui/components.js';
 
-    // Main function to load and display pokemons
-    async function loadPokemons(url) {
-        // Show a loading state (good practice for UX)
-        pokemonContainer.innerHTML = '<p>Cargando Pokémones...</p>';
+document.addEventListener('DOMContentLoaded', () => {
+    // Referencias al DOM
+    const pokemonContainer = document.getElementById('pokemon-list-container');
+    const paginationContainer = document.getElementById('pagination-controls');
+
+    // Estado de la aplicación
+    let state = {
+        currentPage: 1,
+        limit: 20,
+        totalPokemons: 0,
+    };
+
+    /**
+     * Orquesta la carga y renderizado de los Pokémon para una página.
+     * Su única responsabilidad es gestionar el flujo de datos.
+     * @param {number} page - El número de página a cargar.
+     */
+    async function loadPokemonsForPage(page) {
+        state.currentPage = page;
+        pokemonContainer.innerHTML = '<p class="loading-message">Cargando Pokémon...</p>';
 
         try {
-            const data = await getPokemons(url);
-            nextUrl = data.next;
-            prevUrl = data.previous;
+            const offset = (state.currentPage - 1) * state.limit;
+            const data = await getPokemons(state.limit, offset);
 
-            pokemonContainer.innerHTML = ''; // Clear loading message
+            if (state.totalPokemons === 0) {
+                state.totalPokemons = data.count;
+            }
 
-            // Fetch details for each pokemon in the list
-            const pokemonPromises = data.results.map(pokemon => getPokemonDetails(pokemon.name));
+            const pokemonPromises = data.results.map(p => getPokemonDetails(p.name));
             const pokemonsWithDetails = await Promise.all(pokemonPromises);
             
+            // Lógica de renderizado
+            pokemonContainer.innerHTML = ''; // Limpiar
             pokemonsWithDetails.forEach(pokemon => {
+                // Llama a la función importada para crear la tarjeta
                 const card = createPokemonCard(pokemon);
                 pokemonContainer.appendChild(card);
             });
-            
-            updatePagination();
+
+            // Llama a la función importada para dibujar la paginación
+            renderPaginationControls(paginationContainer, state, loadPokemonsForPage);
 
         } catch (error) {
-            pokemonContainer.innerHTML = '<p>Could not load Pokémon. Please try again later.</p>';
+            pokemonContainer.innerHTML = '<p>No se pudieron cargar los Pokémon. Inténtalo más tarde.</p>';
         }
     }
 
-    // Function to create a single pokemon card element
-    function createPokemonCard(pokemon) {
-        const card = document.createElement('div');
-        card.className = 'pokemon-card';
-        // Add a data attribute to identify the pokemon
-        card.dataset.pokemonName = pokemon.name;
-
-        const name = document.createElement('h3');
-        name.textContent = pokemon.name;
-
-        const image = document.createElement('img');
-        image.src = pokemon.sprites.front_default;
-        image.alt = `Image of ${pokemon.name}`;
-
-        card.appendChild(image);
-        card.appendChild(name);
-
-        // Add click event to navigate to detail page
-        card.addEventListener('click', () => {
-            window.location.href = `pokemon.html?name=${pokemon.name}`;
-        });
-
-        return card;
-    }
-    
-    // Function to update pagination buttons
-    function updatePagination() {
-        paginationContainer.innerHTML = ''; // Clear old buttons
-        
-        if (prevUrl) {
-            const prevButton = document.createElement('button');
-            prevButton.textContent = 'Previous';
-            prevButton.addEventListener('click', () => loadPokemons(prevUrl));
-            paginationContainer.appendChild(prevButton);
-        }
-
-        if (nextUrl) {
-            const nextButton = document.createElement('button');
-            nextButton.textContent = 'Next';
-            nextButton.addEventListener('click', () => loadPokemons(nextUrl));
-            paginationContainer.appendChild(nextButton);
-        }
-    }
-
-    // Initial load
-    loadPokemons();
+    // Carga Inicial
+    loadPokemonsForPage(1);
 });
