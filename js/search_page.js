@@ -2,8 +2,8 @@ import { getPokemons, getPokemonDetails } from './api/pokemon_service.js';
 
 // Wait for the DOM to be fully loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
-    const pokemonContainer = document.getElementById('pokemon-list-container');
-    const paginationContainer = document.getElementById('pagination-controls');
+    const pokemonContainer = document.getElementById('pokemon_list_container');
+    const paginationContainer = document.getElementById('pagination_controls');
     let nextUrl = null;
     let prevUrl = null;
 
