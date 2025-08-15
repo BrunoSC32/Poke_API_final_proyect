@@ -35,10 +35,10 @@ export async function processAndTranslateData(details, species) {
         return entry ? entry[key] : 'N/A';
     };
     const typesPromises = details.types.map(async (typeInfo) => {
-    const typeData = await getDataFromUrl(typeInfo.type.url);
+        const typeData = await getDataFromUrl(typeInfo.type.url);
         return {
-            name: findSpanishEntry(typeData.names), 
-            originalName: typeInfo.type.name       
+            name: findSpanishEntry(typeData.names), // El nombre traducido al español
+            originalName: typeInfo.type.name       // El nombre original en inglés
         };
     });
     const abilityPromise = async () => {
