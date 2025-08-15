@@ -9,7 +9,7 @@ export const typeBackgroundColors = {
     electric: '#FFFACD',  
     grass: '#D9EAD3',   
     ice: '#E0FFFF',       
-    fighting: '#FBEADB',  
+    fighting: '#e19794',  
     poison: '#E8D5FF',    
     ground: '#F4E7DA',   
     flying: '#E6E6FA',    

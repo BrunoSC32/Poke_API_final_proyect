@@ -76,3 +76,23 @@ export async function getDataFromUrl(url) {
         throw error;
     }
 }
+
+/**
+ * Fetches the entire list of Pokémon names for the search functionality.
+ * @returns {Promise<Array>} - An array of all Pokémon objects ({name, url}).
+ */
+export async function getAllPokemonList() {
+    // The API has a max limit per request, so we set a high number to get all of them.
+    const url = `${API_BASE_URL}/pokemon?limit=1302`; 
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Error fetching the full Pokémon list: ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data.results; // We only need the 'results' array
+    } catch (error) {
+        console.error('Error fetching the full Pokémon list:', error);
+        throw error;
+    }
+}
