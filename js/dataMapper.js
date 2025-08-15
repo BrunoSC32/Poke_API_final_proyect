@@ -83,7 +83,7 @@ export async function processAndTranslateData(details, species) {
         name: details.name.toUpperCase(),
         image: details.sprites.other['official-artwork'].front_default,
         shinyImage: details.sprites.other['official-artwork'].front_shiny,
-        types: translatedTypes,
+        types: details.types,
         description: spanishDescription,
         height: details.height / 10,
         weight: details.weight / 10,

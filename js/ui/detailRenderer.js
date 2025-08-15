@@ -1,4 +1,4 @@
-// js/ui/detailRenderer.js
+import { generateTypeTagsHtml } from './components/pokemonCard.js';
 
 function renderMainInfo(data) {
     document.getElementById('pokemon-image').src = data.image;
@@ -7,13 +7,8 @@ function renderMainInfo(data) {
     document.getElementById('pokemon-description').textContent = data.description;
     
     const typesContainer = document.getElementById('pokemon-types');
-    typesContainer.innerHTML = '';
-    data.types.forEach(type => {
-        const typeTag = document.createElement('span');
-        typeTag.className = 'type-tag';
-        typeTag.textContent = type;
-        typesContainer.appendChild(typeTag);
-    });
+    
+    typesContainer.innerHTML = generateTypeTagsHtml(data.types);
 }
 
 function renderDetailedInfo(data) {

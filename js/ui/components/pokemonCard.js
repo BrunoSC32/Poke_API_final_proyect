@@ -1,6 +1,24 @@
+// js/ui/components/pokemonCard.js
 
 import { typeBackgroundColors, typeTagColors } from '../../utils/typeColors.js';
 import { typeTranslations } from '../../utils/translations.js';
+
+/**
+ * NEW: A reusable function to generate HTML for Pokémon type tags.
+ * This function can be imported and used anywhere.
+ * @param {Array<object>} types - The types array from the Pokémon details, expecting objects with { type: { name: '...' } }.
+ * @returns {string} - The complete HTML string for the type tags.
+ */
+export function generateTypeTagsHtml(types) {
+    return types.map(typeInfo => {
+        const typeName = typeInfo.type.name; // e.g., 'grass'
+        const tagColor = typeTagColors[typeName] || '#A8A77A';
+        const translatedTypeName = typeTranslations[typeName] || typeName;
+        
+        return `<span class="type-tag" style="background-color: ${tagColor}">${translatedTypeName}</span>`;
+    }).join('');
+}
+
 /**
  * Creates and returns a card element for a single Pokémon.
  * @param {object} pokemon - The detailed Pokémon data object from the API.
@@ -18,14 +36,8 @@ export function createPokemonCard(pokemon) {
     // Format Pokémon ID
     const formattedId = `#${String(pokemon.id).padStart(3, '0')}`;
 
-    // Generate Type Tags
-    const typesHtml = pokemon.types.map(typeInfo => {
-        const typeName = typeInfo.type.name;
-        const tagColor = typeTagColors[typeName] || '#A8A77A';
-
-        const translatedTypeName = typeTranslations[typeName] || typeName;
-        return `<span class="type-tag" style="background-color: ${tagColor}">${translatedTypeName}</span>`;
-    }).join('');
+    // --- UPDATED: Now uses the reusable function ---
+    const typesHtml = generateTypeTagsHtml(pokemon.types);
 
     // Assemble the Card's HTML Structure
     card.innerHTML = `
