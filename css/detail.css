@@ -1,0 +1,385 @@
+/*
+==============================================
+POKEMON DETAIL PAGE STYLES
+==============================================
+*/
+
+/* --- Main container for the detail page --- */
+#detailContainer {
+    max-width: 850px; /* Wider container for a two-column layout */
+    margin: 2rem auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    padding: 30px 40px;
+    text-transform: capitalize;
+}
+
+/* --- Back Button --- */
+#backBtn {
+    background: #587f9f; /* A more subtle blue */
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    transition: background-color 0.25s ease;
+}
+
+#backBtn:hover {
+    background: #34495e;
+}
+
+/* --- Main content layout --- */
+#pokemonDetail {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Two columns: left is smaller */
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* --- Left Column: Image --- */
+.img-wrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1; /* Makes the container a perfect square */
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position: sticky; /* Keeps the image in view when scrolling */
+    top: 20px;
+}
+
+.img-wrapper img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); /* Adds a nice shadow to the sprite */
+}
+
+/* --- Right Column: All Info --- */
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between info sections */
+}
+
+/* ID, Name, and Types */
+.pokemon-id {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 2.8rem;
+    margin: 0;
+    color: #34495e;
+    line-height: 1.1;
+}
+
+.types-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+.types-container img {
+    width: 100px;
+    height: 30px;
+}
+
+/* Description */
+.description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 10px 0;
+    font-style: italic;
+}
+
+/* Grid for Height, Weight, Ability, Color */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    font-size: 1rem;
+}
+
+.info-grid > div {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.info-grid strong {
+    color: #34495e;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.info-grid .info-value {
+    font-weight: 400;
+}
+
+/* Stats Section */
+.stats-container {
+    margin-top: 10px;
+}
+
+.stats-container h3 {
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.stat {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+.stat-name {
+    font-weight: 600;
+    color: #34495e;
+    text-transform: uppercase;
+}
+.stat-bar-container {
+    width: 100%;
+    background: #ecf0f1;
+    border-radius: 8px;
+    height: 16px;
+    overflow: hidden;
+}
+.stat-bar {
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Moves Section */
+.moves {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.moves-list {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #555;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}/* css/detail.css */
+
+/*
+==============================================
+POKEMON DETAIL PAGE STYLES (INSPIRED BY CLASE8)
+==============================================
+*/
+
+/* --- Main container for the detail page --- */
+.container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+#pokemon-detail-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    padding: 30px 40px;
+}
+
+/* --- Back Button --- */
+.back-button {
+    background: #3498db;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    transition: background-color 0.25s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.back-button:hover {
+    background: #2980b9;
+}
+
+/* --- Main Info: Image, Name, ID, Types --- */
+.main-info {
+    text-align: center;
+}
+
+.main-image-container {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 25px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#aaa, #eee); /* Default background */
+}
+
+#pokemon-image {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
+
+.shiny-toggle {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+#pokemon-name {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin: 0 0 6px;
+    color: #34495e;
+}
+
+#pokemon-id {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+#pokemon-description {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Section Titles --- */
+.detailed-info h2,
+.stats-info h2,
+.moves-info h2,
+.evolution-info h2 {
+    text-align: center;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    font-size: 1.6rem;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+
+/* --- Grid for Height, Weight, etc. --- */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+.details-grid strong {
+    font-size: 1.1rem;
+    color: #34495e;
+}
+.details-grid p {
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* --- Stats Bars --- */
+.stat-item {
+    display: grid;
+    grid-template-columns: 140px 1fr 50px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.stat-name {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-align: right;
+}
+.stat-bar-container {
+    width: 100%;
+    background: #ecf0f1;
+    border-radius: 12px;
+    height: 20px;
+    overflow: hidden;
+}
+.stat-bar {
+    height: 100%;
+    border-radius: 12px;
+    background-color: #3498db; /* Default color */
+}
+.stat-value {
+    font-weight: 700;
+    text-align: left;
+}
+
+/* --- Moves List --- */
+#pokemon-moves {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+#pokemon-moves li {
+    background-color: #ecf0f1;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+/* --- Evolution Chain --- */
+#evolution-chain-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.evolution-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.evolution-card img {
+    width: 120px;
+    height: 120px;
+    background-color: #f0f4f8;
+    border-radius: 50%;
+    padding: 10px;
+}
+.evolution-card p {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.evolution-arrow {
+    font-size: 2rem;
+    color: #7f8c8d;
+}
