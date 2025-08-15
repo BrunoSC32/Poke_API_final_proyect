@@ -202,14 +202,21 @@ function renderEvolutionChain(data) {
     const evolutionContainer = document.getElementById('evolution-chain-container');
     evolutionContainer.innerHTML = ''; // Clear previous chain
 
-    if (data.evolutions.length <= 1) {
-        evolutionContainer.innerHTML = '<p>Este Pokémon no tiene evoluciones.</p>';
+    // FIX: The logic is simplified. We no longer show a message for single-stage pokémon.
+    // The loop will now handle all cases correctly.
+    if (!data.evolutions || data.evolutions.length === 0) {
+        evolutionContainer.innerHTML = '<p>No se encontró información de la línea evolutiva.</p>';
         return;
     }
 
     data.evolutions.forEach((pokemon, index) => {
         const evolutionCard = document.createElement('div');
         evolutionCard.className = 'evolution-card';
+        // Make the evolution card clickable to navigate to that Pokémon's page
+        evolutionCard.addEventListener('click', () => {
+            window.location.href = `pokemon.html?name=${pokemon.name}`;
+        });
+        
         evolutionCard.innerHTML = `
             <img src="${pokemon.image}" alt="${pokemon.name}">
             <p>${pokemon.name}</p>

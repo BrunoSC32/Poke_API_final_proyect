@@ -1,6 +1,6 @@
 
 import { typeBackgroundColors, typeTagColors } from '../../utils/typeColors.js';
-
+import { typeTranslations } from '../../utils/translations.js';
 /**
  * Creates and returns a card element for a single Pokémon.
  * @param {object} pokemon - The detailed Pokémon data object from the API.
@@ -22,7 +22,9 @@ export function createPokemonCard(pokemon) {
     const typesHtml = pokemon.types.map(typeInfo => {
         const typeName = typeInfo.type.name;
         const tagColor = typeTagColors[typeName] || '#A8A77A';
-        return `<span class="type-tag" style="background-color: ${tagColor}">${typeName}</span>`;
+
+        const translatedTypeName = typeTranslations[typeName] || typeName;
+        return `<span class="type-tag" style="background-color: ${tagColor}">${translatedTypeName}</span>`;
     }).join('');
 
     // Assemble the Card's HTML Structure
