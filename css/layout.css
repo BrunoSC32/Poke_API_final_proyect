@@ -1,8 +1,8 @@
 
-@import url('./base.css');
-@import url('./layout.css');
-@import url('./components.css');
 
+/* css/layout.css */
+
+/* --- Main Grid Layout --- */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
