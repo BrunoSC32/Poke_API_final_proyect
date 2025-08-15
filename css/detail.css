@@ -235,6 +235,7 @@ POKEMON DETAIL PAGE STYLES (INSPIRED BY CLASE8)
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative; 
     background: linear-gradient(#aaa, #eee); /* Default background */
 }
 

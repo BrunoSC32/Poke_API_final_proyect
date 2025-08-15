@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle del Pokémon</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/detail.css">
-    
-    <script src="js/detail_page.js" type="module" defer></script>
-</head>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/detail.css">
+        <link rel="stylesheet" href="css/shiny-toggle.css"> <script src="js/detail_page.js" type="module" defer></script>
+    </head>
 <body>
 
     <header class="detail-header">
@@ -20,8 +16,12 @@
             <div class="main-image-container">
                 <img id="pokemon-image" src="" alt="Imagen del Pokémon">
                 <div class="shiny-toggle">
-                    <!--<input type="checkbox" id="shiny-checkbox">
-                    <label for="shiny-checkbox">Ver Shiny</label>-->
+                    <label for="shiny-checkbox">Ver Shiny</label>
+                    <div class="shiny-toggle">
+                        <label for="shiny-checkbox">Shiny</label>
+                        <input type="checkbox" id="shiny-checkbox">
+                        <label for="shiny-checkbox" class="toggle-switch-visual"></label>
+                    </div>
                 </div>
             </div>
             
