@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Pokémon</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/detail_page.js" type="module" defer></script>
+</head>
+<body>
+
+    <header class="detail-header">
+        <a href="search.html" class="back-button">&laquo; Volver a la lista</a>
+    </header>
+
+    <main id="pokemon-detail-container" class="container">
+        <section class="main-info">
+            <div class="main-image-container">
+                <img id="pokemon-image" src="" alt="Imagen del Pokémon">
+                <div class="shiny-toggle">
+                    <input type="checkbox" id="shiny-checkbox">
+                    <label for="shiny-checkbox">Ver Shiny</label>
+                </div>
+            </div>
+            
+            <div class="basic-info">
+                <span id="pokemon-id">#000</span>
+                <h1 id="pokemon-name">Cargando...</h1>
+                <div id="pokemon-types" class="type-tags-container">
+                    </div>
+                <p id="pokemon-description">...</p>
+            </div>
+        </section>
+
+        <section class="detailed-info">
+            <h2>Detalles</h2>
+            <div class="details-grid">
+                <div>
+                    <strong>Altura</strong>
+                    <p id="pokemon-height">-- m</p>
+                </div>
+                <div>
+                    <strong>Peso</strong>
+                    <p id="pokemon-weight">-- kg</p>
+                </div>
+                <div>
+                    <strong>Habilidad Principal</strong>
+                    <p id="pokemon-ability">--</p>
+                </div>
+                <div>
+                    <strong>Color</strong>
+                    <p id="pokemon-color">--</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-info">
+            <h2>Estadísticas Base</h2>
+            <div id="stats-container">
+                </div>
+        </section>
+
+        <section class="moves-info">
+            <h2>Movimientos</h2>
+            <ul id="pokemon-moves">
+                </ul>
+        </section>
+        
+        <section class="evolution-info">
+            <h2>L
