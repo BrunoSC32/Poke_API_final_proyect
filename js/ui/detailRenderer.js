@@ -1,4 +1,4 @@
-// js/ui/detailRenderer.js
+import { typeTagColors } from '../../utils/typeColors.js';
 
 function renderMainInfo(data) {
     document.getElementById('pokemon-image').src = data.image;
@@ -8,10 +8,15 @@ function renderMainInfo(data) {
     
     const typesContainer = document.getElementById('pokemon-types');
     typesContainer.innerHTML = '';
-    data.types.forEach(type => {
+    data.types.forEach(typeObject => {
         const typeTag = document.createElement('span');
         typeTag.className = 'type-tag';
-        typeTag.textContent = type;
+        typeTag.textContent = typeObject.name; 
+
+
+        const tagColor = typeTagColors[typeObject.originalName] || '#A8A77A'; 
+        typeTag.style.backgroundColor = tagColor;
+        
         typesContainer.appendChild(typeTag);
     });
 }

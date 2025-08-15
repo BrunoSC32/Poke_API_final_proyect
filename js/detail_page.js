@@ -35,26 +35,10 @@ async function loadPokemonData(name) {
         // 3. Render the UI
         renderAllPokemonInfo(processedData);
         
-        // 4. Set up interactivity
-        setupEventListeners(processedData);
+        // 4. Set up interactivity (This logic is now inside the renderer)
 
     } catch (error) {
         console.error('Failed to load Pokémon data:', error);
         container.innerHTML = `<p class="error-message">No se pudo encontrar la información para "${name}".</p>`;
-    }
-}
-
-/**
- * Sets up all the event listeners for the page's interactive elements.
- * @param {object} data - The clean, processed Pokémon data object.
- */
-function setupEventListeners(data) {
-    const shinyCheckbox = document.getElementById('shiny-checkbox');
-    const pokemonImage = document.getElementById('pokemon-image');
-
-    if (shinyCheckbox && pokemonImage) {
-        shinyCheckbox.addEventListener('change', () => {
-            pokemonImage.src = shinyCheckbox.checked ? data.shinyImage : data.image;
-        });
     }
 }

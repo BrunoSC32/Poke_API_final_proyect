@@ -35,8 +35,11 @@ export async function processAndTranslateData(details, species) {
         return entry ? entry[key] : 'N/A';
     };
     const typesPromises = details.types.map(async (typeInfo) => {
-        const typeData = await getDataFromUrl(typeInfo.type.url);
-        return findSpanishEntry(typeData.names);
+    const typeData = await getDataFromUrl(typeInfo.type.url);
+        return {
+            name: findSpanishEntry(typeData.names), 
+            originalName: typeInfo.type.name       
+        };
     });
     const abilityPromise = async () => {
         const abilityData = await getDataFromUrl(details.abilities[0].ability.url);
